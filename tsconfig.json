@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": false,
+    "alwaysStrict": true,
+    "charset": "utf-8",
+    "declaration": false,
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["dom", "es2020"],
+    "module": "commonjs",
+    "noEmit": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "typeRoots": ["./@types", "./node_modules/@types"]
+  },
+  "exclude": ["./node_modules", "./public", "./.cache"],
+  "include": ["./src/**/*"]
+}

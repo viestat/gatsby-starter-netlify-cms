@@ -1,0 +1,27 @@
+{
+  "dictionaries": [
+    "companies",
+    "filetypes",
+    "misc",
+    "node",
+    "npm",
+    "softwareTerms",
+    "typescript"
+  ],
+  "flagWords": [],
+  "ignorePaths": [
+    ".cache/**",
+    ".eslintrc",
+    "*.json",
+    "*.log",
+    "*.yaml",
+    "**/*.json",
+    "node_modules/**",
+    "public/**"
+  ],
+  "language": "en-US",
+  "version": "0.1",
+  "words": [
+    "frontmatter"
+  ]
+}
