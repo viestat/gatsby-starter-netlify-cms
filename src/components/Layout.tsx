@@ -6,11 +6,10 @@ import { withPrefix } from 'gatsby';
 
 import './all.scss';
 
-
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   return (
-    <div>
+    <div style={{ height: `100%` }}>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -49,7 +48,7 @@ const TemplateWrapper = ({ children }) => {
           content={`${withPrefix('/')}img/og-image.jpg`}
         />
       </Helmet>
-      <div>{children}</div>
+      <div style={{ height: `100%` }}>{children}</div>
     </div>
   );
 };

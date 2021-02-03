@@ -38,7 +38,3 @@ $ yarn develop
 - [TypeScript](https://www.typescriptlang.org/)
 - [gatsby-starter-netlify-cms](https://www.gatsbyjs.com/starters/netlify-templates/gatsby-starter-netlify-cms)
 
-# CONTRIBUTING
-
-Contributions are always welcome, no matter how large or small. Before contributing,
-please read the [code of conduct](CODE_OF_CONDUCT.md).

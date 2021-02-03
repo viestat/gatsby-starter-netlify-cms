@@ -9,7 +9,7 @@ const SmartLinkPreview = ({
     <SmartLinkTemplate
       title={entry.getIn(['data', 'title'])}
       subtitle={entry.getIn(['data', 'subtitle'])}
-      pageImage={entry.getIn(['data', 'pageImage'])}
+      mainImage={entry.getIn(['data', 'mainImage'])}
       links={entry.getIn(['data', 'links'])}
     />
   );

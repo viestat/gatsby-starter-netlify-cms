@@ -1,2 +1,53 @@
 @charset "utf-8";
-@import "bulma";
+@import 'bulma';
+
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper {
+  height: 100%;
+}
+
+html,
+body {
+  background-color: black;
+}
+
+body {
+  margin: 0px;
+}
+
+.linkContainer {
+  background: #1b1b1b;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.12);
+  color: white;
+}
+
+.blurredBackground {
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(25px);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.linkBlock {
+  color: white;
+  border-bottom: 1px solid #434343;
+  border-top: 1px solid #434343;
+  height: 70px;
+  cursor: pointer;
+  &:hover {
+    background: #282828;
+    color: #00bfff;
+    text-shadow: 0 0 15px #00bfff;
+  }
+}
+
+.titleBlock {
+  height: 80px;
+}

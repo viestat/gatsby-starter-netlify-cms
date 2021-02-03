@@ -6,8 +6,8 @@ import Layout from '../components/Layout';
 
 interface GatsbyImage {
   childImageSharp: {
-    fluid: FluidObject | FluidObject[];
-    fixed: FixedObject | FixedObject[];
+    fluid: FluidObject;
+    fixed: FixedObject;
   };
 }
 
@@ -20,65 +20,73 @@ interface Link {
 
 interface SmartLinkTemplateProps {
   helmet?: React.ReactNode;
-  pageImage: GatsbyImage;
+  mainImage: GatsbyImage;
   links: Link[];
   subtitle: string;
   title: string;
 }
 
-// const LinkComponent = ({ link }) => {
-//   return (
-//     <a
-//       className="columns is-mobile is-centered"
-//       src={link.url}
-//       style={{
-//         maxHeight: 78,
-//       }}
-//     >
-//       <div className="column is-offset-4 is-4">
-//         <Img fluid={link.link.image.childImageSharp.fluid} />
-//       </div>
-//       <div className="column is-2">
-//         <p>Play</p>
-//       </div>
-//     </a>
-//   );
-// };
+const LinkComponent = ({ link }) => {
+  return (
+    <a
+      className="columns is-mobile is-centered is-vcentered linkBlock"
+      href={link.linkObject.url}
+      style={{}}
+    >
+      <div className="column is-half-mobile">
+        <Img fluid={link.linkObject.linkImage.childImageSharp.fluid} />
+      </div>
+      <div className="column is-half-mobile">
+        <div className="columns is-mobile is-centered">
+          <div className="column is-half">
+            <i className="fas fa-play"></i> PLAY
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+};
 
 export const SmartLinkTemplate = ({
   helmet,
   links,
-  pageImage,
+  mainImage,
   subtitle,
   title,
 }: SmartLinkTemplateProps) => {
-  console.log(links[0].linkObject, 'inks');
   return (
-    <div className="section" style={{ backgroundColor: 'black' }}>
-      <div className="container">
+    <div
+      className="section"
+      style={{
+        height: '100%',
+      }}
+    >
+      <div
+        className="blurredBackground"
+        style={{
+          backgroundImage: `url(${mainImage.childImageSharp.fluid.src})`
+        }}
+      />
+      <div className="container" style={{}}>
         <div className="columns is-centered">
           {helmet || ''}
-          <div className="column is-4">
-            <Img fluid={pageImage.childImageSharp.fluid} />
+          <div className="column is-3 linkContainer">
+            <div className="columns is-centered">
+              <div className="column p-0">
+                <Img fluid={mainImage.childImageSharp.fluid} />
+              </div>
+            </div>
+            <div className="columns is-centered">
+              <div className="column has-text-centered is-family-monospace titleBlock">
+                <h1 className="is-size-4">{title}</h1>
+                <h1 className="is-size-6">{subtitle}</h1>
+              </div>
+            </div>
+            {links.map((link) => {
+              return <LinkComponent link={link} />;
+            })}
           </div>
         </div>
-        <a
-          className="columns is-mobile is-centered"
-          href={links[0].linkObject.url}
-          style={{}}
-        >
-          <div className="column is-1">
-            <Img fluid={links[0].linkObject.linkImage.childImageSharp.fluid} />
-          </div>
-          <div className="column is-3">
-            <div className="columns">
-              <span className="icon">
-                <i className="fas fa-play"></i>
-              </span>
-              <p>Play</p>
-            </div>
-          </div>
-        </a>
       </div>
     </div>
   );
@@ -91,7 +99,7 @@ interface SmartLinkProps {
         title: string;
         subtitle: string;
         links: Link[];
-        pageImage: GatsbyImage;
+        mainImage: GatsbyImage;
       };
     };
   };
@@ -100,7 +108,7 @@ interface SmartLinkProps {
 const SmartLink = ({ data }: SmartLinkProps) => {
   const {
     markdownRemark: {
-      frontmatter: { title, subtitle, links, pageImage },
+      frontmatter: { title, subtitle, links, mainImage },
     },
   } = data;
   return (
@@ -114,7 +122,7 @@ const SmartLink = ({ data }: SmartLinkProps) => {
         }
         title={title}
         subtitle={subtitle}
-        pageImage={pageImage}
+        mainImage={mainImage}
         links={links}
       />
     </Layout>
@@ -135,14 +143,14 @@ export const pageQuery = graphql`
             url
             linkImage {
               childImageSharp {
-                fluid(maxHeight: 30, quality: 100) {
+                fluid(quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
           }
         }
-        pageImage {
+        mainImage {
           childImageSharp {
             fluid(maxWidth: 745, quality: 100) {
               ...GatsbyImageSharpFluid
