@@ -10,7 +10,9 @@ body,
 
 html,
 body {
-  background-color: black;
+  background-color: #282828;
+  font-family: Calibre, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
+    Arial, sans-serif !important;
 }
 
 body {
@@ -21,16 +23,26 @@ body {
   background: #1b1b1b;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.12);
   color: white;
+  min-width: 342px;
 }
 
 .blurredBackground {
+  -webkit-backface-visibility: hidden;
+  -webkit-filter: blur(25px);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
   background-color: black;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   filter: blur(25px);
   height: 100%;
+  left: 0;
+  overflow: auto;
   position: fixed;
-  top: 0;
+  right: 0;
+  top: 50px;
+  transform: translateZ(0);
   width: 100%;
   z-index: 0;
 }
@@ -38,8 +50,8 @@ body {
 .linkBlock {
   color: white;
   border-bottom: 1px solid #434343;
-  border-top: 1px solid #434343;
-  height: 70px;
+  max-height: 78px;
+  height: 78px;
   cursor: pointer;
   &:hover {
     background: #282828;
@@ -49,5 +61,18 @@ body {
 }
 
 .titleBlock {
-  height: 80px;
+  height: 92px;
+  border-bottom: 1px solid #434343;
+}
+
+.linkImage {
+  max-width: 100px;
+  max-height: 30px;
+}
+
+.linkTextContainer {
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 12px;
+  min-width: 42px;
 }

@@ -34,10 +34,14 @@ const LinkComponent = ({ link }) => {
       style={{}}
     >
       <div className="column is-half-mobile">
-        <Img fluid={link.linkObject.linkImage.childImageSharp.fluid} />
+        <Img
+          className="linkImage"
+          imgStyle={{ objectFit: 'contain' }}
+          fluid={{ ...link.linkObject.linkImage.childImageSharp.fluid }}
+        />
       </div>
       <div className="column is-half-mobile">
-        <div className="columns is-mobile is-centered">
+        <div className="columns is-mobile is-justify-content-flex-end linkTextContainer">
           <div className="column is-half">
             <i className="fas fa-play"></i> PLAY
           </div>
@@ -56,7 +60,7 @@ export const SmartLinkTemplate = ({
 }: SmartLinkTemplateProps) => {
   return (
     <div
-      className="section"
+      className="section m-3 p-3"
       style={{
         height: '100%',
       }}
@@ -64,26 +68,26 @@ export const SmartLinkTemplate = ({
       <div
         className="blurredBackground"
         style={{
-          backgroundImage: `url(${mainImage.childImageSharp.fluid.src})`
+          backgroundImage: `url(${mainImage.childImageSharp.fluid.src})`,
         }}
       />
-      <div className="container" style={{}}>
+      <div className="container">
         <div className="columns is-centered">
           {helmet || ''}
-          <div className="column is-3 linkContainer">
+          <div className="column is-3-desktop is-6-tablet is-12-mobile linkContainer">
             <div className="columns is-centered">
               <div className="column p-0">
                 <Img fluid={mainImage.childImageSharp.fluid} />
               </div>
             </div>
             <div className="columns is-centered">
-              <div className="column has-text-centered is-family-monospace titleBlock">
-                <h1 className="is-size-4">{title}</h1>
-                <h1 className="is-size-6">{subtitle}</h1>
+              <div className="column has-text-centered titleBlock">
+                <h1 className="is-size-6 has-text-weight-bold mb-2">{title}</h1>
+                <h1 className="is-size-7">{subtitle}</h1>
               </div>
             </div>
-            {links.map((link) => {
-              return <LinkComponent link={link} />;
+            {links.map((link, index) => {
+              return <LinkComponent link={link} key={index} />;
             })}
           </div>
         </div>
@@ -143,7 +147,7 @@ export const pageQuery = graphql`
             url
             linkImage {
               childImageSharp {
-                fluid(quality: 100) {
+                fluid(maxHeight: 30, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
