@@ -14,19 +14,39 @@ interface GatsbyImage {
 interface Link {
   linkObject: {
     url: string;
-    linkImage: GatsbyImage;
+    linkImage: GatsbyImage | string;
   };
 }
 
 interface SmartLinkTemplateProps {
   helmet?: React.ReactNode;
-  mainImage: GatsbyImage;
+  mainImage: GatsbyImage | string;
   links: Link[];
   subtitle: string;
   title: string;
 }
 
-const LinkComponent = ({ link }) => {
+const isGatsbyImage = (image: GatsbyImage | string): image is GatsbyImage => {
+  return (image as GatsbyImage).childImageSharp !== undefined;
+};
+
+const LinkComponent = ({ link }: { link: Link }) => {
+
+  console.log(link, 'fadsfasdfsdf6666')
+  const getImage = (image: GatsbyImage | string) => {
+    if (isGatsbyImage(image)) {
+      return (
+        <Img
+          className="linkImage"
+          imgStyle={{ objectFit: 'contain' }}
+          fluid={image.childImageSharp.fluid}
+        />
+      );
+    }
+
+    return <img src={image} />;
+  };
+
   return (
     <a
       className="columns is-mobile is-centered is-vcentered linkBlock"
@@ -34,11 +54,7 @@ const LinkComponent = ({ link }) => {
       style={{}}
     >
       <div className="column is-half-mobile">
-        <Img
-          className="linkImage"
-          imgStyle={{ objectFit: 'contain' }}
-          fluid={{ ...link.linkObject.linkImage.childImageSharp.fluid }}
-        />
+        {getImage(link.linkObject.linkImage)}
       </div>
       <div className="column is-half-mobile">
         <div className="columns is-mobile is-justify-content-flex-end linkTextContainer">
@@ -51,6 +67,7 @@ const LinkComponent = ({ link }) => {
   );
 };
 
+
 export const SmartLinkTemplate = ({
   helmet,
   links,
@@ -58,6 +75,22 @@ export const SmartLinkTemplate = ({
   subtitle,
   title,
 }: SmartLinkTemplateProps) => {
+  const generateUrl = (image: GatsbyImage | string): string => {
+    if (isGatsbyImage(image)) {
+      return image.childImageSharp.fluid.src;
+    }
+  
+    return image;
+  };
+  
+  const getImage = (image: GatsbyImage | string) => {
+    if (isGatsbyImage(image)) {
+      return <Img fluid={image.childImageSharp.fluid} />;
+    }
+  
+    return <img src={image} />;
+  };
+
   return (
     <div
       className="section m-3 p-3"
@@ -68,7 +101,7 @@ export const SmartLinkTemplate = ({
       <div
         className="blurredBackground"
         style={{
-          backgroundImage: `url(${mainImage.childImageSharp.fluid.src})`,
+          backgroundImage: `url(${generateUrl(mainImage)})`,
         }}
       />
       <div className="container">
@@ -76,9 +109,7 @@ export const SmartLinkTemplate = ({
           {helmet || ''}
           <div className="column is-3-desktop is-6-tablet is-12-mobile linkContainer">
             <div className="columns is-centered">
-              <div className="column p-0">
-                <Img fluid={mainImage.childImageSharp.fluid} />
-              </div>
+              <div className="column p-0">{getImage(mainImage)}</div>
             </div>
             <div className="columns is-centered">
               <div className="column has-text-centered titleBlock">

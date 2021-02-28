@@ -14,7 +14,7 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'smartLinks'
+  - name: 'smart-link'
     label: 'Smart Links'
     folder: 'src/pages/smartLinks'
     create: true
