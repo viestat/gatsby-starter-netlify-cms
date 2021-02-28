@@ -31,8 +31,6 @@ const isGatsbyImage = (image: GatsbyImage | string): image is GatsbyImage => {
 };
 
 const LinkComponent = ({ link }: { link: Link }) => {
-
-  console.log(link, 'fadsfasdfsdf6666')
   const getImage = (image: GatsbyImage | string) => {
     if (isGatsbyImage(image)) {
       return (
@@ -67,7 +65,6 @@ const LinkComponent = ({ link }: { link: Link }) => {
   );
 };
 
-
 export const SmartLinkTemplate = ({
   helmet,
   links,
@@ -79,15 +76,15 @@ export const SmartLinkTemplate = ({
     if (isGatsbyImage(image)) {
       return image.childImageSharp.fluid.src;
     }
-  
+
     return image;
   };
-  
+
   const getImage = (image: GatsbyImage | string) => {
     if (isGatsbyImage(image)) {
       return <Img fluid={image.childImageSharp.fluid} />;
     }
-  
+
     return <img src={image} />;
   };
 

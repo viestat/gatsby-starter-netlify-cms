@@ -6,15 +6,20 @@ require('ts-node').register();
 module.exports = {
   siteMetadata: {
     title: 'Sleepwoka',
-    description:
-      'Sleepwoka',
+    description: 'Sleepwoka',
   },
   plugins: [
     'gatsby-plugin-typescript',
     {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: '333952531199775',
+      },
+    },
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
-        implementation: require("node-sass"),
+        implementation: require('node-sass'),
       },
     },
     'gatsby-plugin-react-helmet',
@@ -84,8 +89,8 @@ module.exports = {
         // applies purging only on the bulma css file
         purgeOnly: ['/all.sass'],
       },
-    }, 
+    },
     // make sure to keep it last in the array
     'gatsby-plugin-netlify',
   ],
-}
+};

@@ -7189,6 +7189,11 @@ gatsby-page-utils@^0.8.0:
     lodash "^4.17.20"
     micromatch "^4.0.2"
 
+gatsby-plugin-facebook-pixel@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-facebook-pixel/-/gatsby-plugin-facebook-pixel-1.0.5.tgz#521e52db23a75fa27a55d03d23917cb3edb3391d"
+  integrity sha512-EFozZ47iskV1zIfNz7XGYGYhh0Mhfi9S1rswbRPefnc0s/NhQqVa45Ky82eM2M8yxiICS3BAmI1rS5dFDDNT7Q==
+
 gatsby-plugin-netlify-cms@^4.2.5:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms/-/gatsby-plugin-netlify-cms-4.9.0.tgz#8ee2bc3284c5956f17e0ad90de8a00529f09c838"
